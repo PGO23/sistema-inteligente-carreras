@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "descripcion": "Base de conocimiento — Sistema experto basado en reglas (Unidad II)",
+  "reglas": [
+    {
+      "id": "R1",
+      "nombre": "Software → Ciberseguridad",
+      "si_contiene": ["software", "sistemas", "informática", "programación", "desarrollo"],
+      "sugiere_contiene": ["ciber", "seguridad", "hacking", "forense"],
+      "confianza": 82,
+      "justificacion": "Perfiles de desarrollo suelen interesarse en protección de sistemas."
+    },
+    {
+      "id": "R2",
+      "nombre": "Software → Datos",
+      "si_contiene": ["software", "sistemas", "informática", "programación"],
+      "sugiere_contiene": ["datos", "estadística", "analytics", "big data", "inteligencia"],
+      "confianza": 78,
+      "justificacion": "La ingeniería de software comparte fundamentos con ciencia de datos."
+    },
+    {
+      "id": "R3",
+      "nombre": "Ciber → Redes",
+      "si_contiene": ["ciber", "seguridad", "forense"],
+      "sugiere_contiene": ["redes", "telecom", "network", "infraestructura"],
+      "confianza": 75,
+      "justificacion": "La ciberseguridad requiere dominio de redes y protocolos."
+    },
+    {
+      "id": "R4",
+      "nombre": "Datos → Estadística",
+      "si_contiene": ["datos", "analytics", "inteligencia", "machine", "ia"],
+      "sugiere_contiene": ["estadística", "matemática", "actuaría"],
+      "confianza": 80,
+      "justificacion": "El análisis de datos se apoya en métodos estadísticos."
+    },
+    {
+      "id": "R5",
+      "nombre": "Redes → Telecom",
+      "si_contiene": ["redes", "network", "telecom"],
+      "sugiere_contiene": ["telecom", "comunicaciones", "ciber", "sistemas"],
+      "confianza": 72,
+      "justificacion": "Redes y telecomunicaciones son áreas complementarias."
+    },
+    {
+      "id": "R6",
+      "nombre": "Negocios → Marketing digital",
+      "si_contiene": ["administración", "negocios", "empresa", "gestión"],
+      "sugiere_contiene": ["marketing", "comercial", "ventas", "digital"],
+      "confianza": 70,
+      "justificacion": "La gestión empresarial se vincula con estrategias comerciales."
+    }
+  ],
+  "consideraciones_eticas": [
+    "Las recomendaciones son orientativas, no determinan la vocación del estudiante.",
+    "Los datos personales (correo, celular) se usan solo para el servicio de orientación académica.",
+    "El sistema no discrimina por género, edad ni ubicación geográfica.",
+    "El estudiante puede solicitar información de cualquier carrera sin restricciones algorítmicas.",
+    "Los modelos se entrenan con datos anonimizados de solicitudes reales y se revisan periódicamente."
+  ]
+}
