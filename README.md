@@ -39,41 +39,96 @@ La aplicación capta solicitudes de información vía formulario web (Laravel), 
 - Python 3.10+
 - Node.js (opcional, para assets)
 
-## Instalación
+## Instalación paso a paso
+
+### 1. Clonar el proyecto
 
 ```bash
-# Laravel
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan storage:link
+git clone https://github.com/PGO23/sistema-inteligente-carreras.git
+cd sistema-inteligente-carreras
+```
 
-# Python ML
+### 2. Dependencias
+
+```bash
+# Laravel (PHP)
+composer install
+
+# Microservicio ML (Python)
 pip install -r ml/requirements.txt
 ```
 
-Configurar en `.env`:
+### 3. Configuración
+
+```bash
+cp .env.example .env
+php artisan key:generate
 ```
+
+Edita el archivo `.env` con tus datos de MySQL:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
 DB_DATABASE=registro_estudiantes
+DB_USERNAME=root
+DB_PASSWORD=
+
 ML_API_URL=http://127.0.0.1:5001
 ```
 
-## Uso
+### 4. Base de datos
+
+Crea la base de datos vacía (en phpMyAdmin de XAMPP o por consola):
+```sql
+CREATE DATABASE registro_estudiantes;
+```
+
+Crea las tablas con las migraciones:
+```bash
+php artisan migrate
+```
+
+Crea el enlace para los PDFs de mallas:
+```bash
+php artisan storage:link
+```
+
+### 5. Datos de demostración (recomendado para la primera prueba)
+
+Genera estudiantes y carreras de ejemplo con patrones consistentes:
+```bash
+php artisan db:seed --class=SolicitudesDemoSeeder
+```
+
+### 6. Entrenar los modelos de IA
 
 ```bash
-# Terminal 1 — Laravel
-php artisan serve
-
-# Terminal 2 — API de Machine Learning
-python ml/app.py
-
-# Datos de demostración (opcional)
-php artisan db:seed --class=SolicitudesDemoSeeder
-
-# Entrenar modelos
 python ml/train.py
-# o desde el panel: /sistemas/ia → "Entrenar todos los modelos"
 ```
+(o desde el panel web `/sistemas/ia` con el botón "Entrenar todos los modelos")
+
+## Uso (cómo ejecutarlo)
+
+Necesitas **2 terminales abiertas al mismo tiempo**:
+
+```bash
+# Terminal 1 — Servidor web Laravel
+php artisan serve
+# Queda en http://127.0.0.1:8000
+
+# Terminal 2 — API de Machine Learning (Python/Flask)
+python ml/app.py
+# Queda en http://127.0.0.1:5001
+```
+
+Luego abre en el navegador:
+- `http://127.0.0.1:8000` → sitio público: elige una carrera, llena el formulario y verás las recomendaciones de IA.
+- `http://127.0.0.1:8000/sistemas/ia` → panel del sistema inteligente: modelos, precisión, agentes y ética.
+
+### Verificación rápida
+
+- `http://127.0.0.1:5001/health` debe responder `{"ok": true, ...}` → la API de IA está activa.
 
 ## Rutas principales
 
